@@ -1,0 +1,580 @@
+<title>Jagdish M Prajapati</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap');
+
+  :root{
+    --bg:#fefdfa;
+    --surface:#ffffff;
+    --ink:#221d16;
+    --ink-soft:#6e6455;
+    --line:#eee8da;
+    --accent:#c8451f;
+    --on-accent:#fbf3ea;
+    --panel:#161210;
+    --panel-ink:#f3ece0;
+    --panel-ink-soft:#b6a996;
+    --panel-line:#37302a;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', system-ui, sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:600;
+    line-height:1.05;
+    text-wrap:balance;
+    margin:0;
+  }
+  .mono{ font-family:'IBM Plex Mono', ui-monospace, monospace; }
+  a{ color:inherit; }
+  img{ max-width:100%; display:block; }
+
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding-inline:20px;
+  }
+
+  /* ---- top bar ---- */
+  .topbar{
+    position:sticky;
+    top:env(safe-area-inset-top, 0px);
+    z-index:10;
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-block:12px;
+    gap:12px;
+  }
+  .topbar .brand{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1rem;
+    letter-spacing:0.01em;
+  }
+  .topbar .call{
+    font-size:0.8rem;
+    font-weight:600;
+    padding:8px 14px;
+    border-radius:2px;
+    background:var(--accent);
+    color:var(--on-accent);
+    text-decoration:none;
+    white-space:nowrap;
+  }
+
+  /* ---- hero ---- */
+  .hero{ padding-block:56px 40px; }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:14px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:8px;height:8px;
+    background:var(--accent);
+    display:inline-block;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 6vw, 3.6rem);
+  }
+  .hero .tagline{
+    margin-top:16px;
+    font-size:1.05rem;
+    color:var(--ink-soft);
+    max-width:38ch;
+    line-height:1.55;
+  }
+  .cta-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:26px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:12px 20px;
+    border-radius:2px;
+    font-size:0.9rem;
+    font-weight:600;
+    text-decoration:none;
+    border:1px solid var(--line);
+  }
+  .btn-primary{ background:var(--accent); color:var(--on-accent); border-color:var(--accent); }
+  .btn-ghost{ background:transparent; color:var(--ink); }
+
+  .hero-photo{
+    margin-top:40px;
+    border:1px solid var(--line);
+    overflow:hidden;
+    aspect-ratio:16/10;
+  }
+  .hero-photo img{ width:100%; height:100%; object-fit:cover; }
+
+  .stats{
+    display:flex;
+    gap:40px;
+    margin-top:36px;
+    padding-top:28px;
+    border-top:1px solid var(--line);
+    flex-wrap:wrap;
+  }
+  .stat .num{
+    font-family:'Fraunces', serif;
+    font-size:2.4rem;
+    font-weight:600;
+    color:var(--accent);
+    font-variant-numeric:tabular-nums;
+  }
+  .stat .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-top:4px;
+  }
+
+  /* ---- section shell ---- */
+  section{ padding-block:52px; border-top:1px solid var(--line); }
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:24px;
+    flex-wrap:wrap;
+    margin-bottom:32px;
+  }
+  .section-head h2{ font-size:clamp(1.7rem, 3.4vw, 2.3rem); }
+  .section-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
+    color:var(--ink-soft);
+    letter-spacing:0.08em;
+  }
+
+  /* ---- about ---- */
+  .about-grid{
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap:48px;
+    align-items:start;
+  }
+  .about-grid p{
+    color:var(--ink-soft);
+    line-height:1.7;
+    font-size:0.98rem;
+    margin:0 0 16px;
+  }
+  .about-grid p:last-child{ margin-bottom:0; }
+  .about-photo{
+    border:1px solid var(--line);
+    overflow:hidden;
+    aspect-ratio:4/5;
+  }
+  .about-photo img{ width:100%; height:100%; object-fit:cover; }
+
+  .about-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    padding:28px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:28px;
+    align-content:flex-start;
+  }
+  .about-card-note{
+    width:100%;
+    margin:6px 0 0;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    border-top:1px solid var(--line);
+    padding-top:18px;
+  }
+
+  @media (max-width: 760px){
+    .about-grid{ grid-template-columns:1fr; }
+    .about-photo{ order:-1; aspect-ratio:16/10; }
+  }
+
+  /* ---- services ---- */
+  .services-list{
+    list-style:none;
+    margin:0; padding:0;
+    border-top:1px solid var(--line);
+  }
+  .services-list li{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    padding:18px 0;
+    border-bottom:1px solid var(--line);
+    font-size:1.05rem;
+    font-weight:500;
+  }
+  .services-list li::before{
+    content:"";
+    width:9px; height:9px;
+    background:var(--accent);
+    flex-shrink:0;
+  }
+  .services-note{
+    margin-top:24px;
+    color:var(--ink-soft);
+    font-size:0.92rem;
+    line-height:1.6;
+    max-width:56ch;
+  }
+
+  /* ---- process ---- */
+  .stage{
+    display:grid;
+    grid-template-columns: 64px 1fr;
+    gap:22px;
+    padding-block:26px;
+    border-bottom:1px solid var(--line);
+  }
+  .stage:first-of-type{ border-top:1px solid var(--line); }
+  .stage-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.85rem;
+    color:var(--accent);
+    padding-top:4px;
+  }
+  .stage-body h3{
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:1.08rem;
+    font-weight:600;
+  }
+  .stage-body p{
+    color:var(--ink-soft);
+    font-size:0.94rem;
+    line-height:1.6;
+    margin:8px 0 0;
+    max-width:56ch;
+  }
+  .stage-photo{
+    margin-top:16px;
+    border:1px solid var(--line);
+    overflow:hidden;
+    max-width:420px;
+    aspect-ratio:4/3;
+  }
+  .stage-photo img{ width:100%; height:100%; object-fit:cover; }
+  .stage-icon{
+    margin-top:14px;
+    color:var(--accent);
+  }
+
+  /* ---- contact ---- */
+  .contact-section{
+    background:var(--panel);
+    color:var(--panel-ink);
+    border-top:1px solid var(--panel-line);
+  }
+  .contact-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:48px;
+  }
+  .contact-section h2{ color:var(--panel-ink); }
+  .contact-section .section-num{ color:var(--panel-ink-soft); }
+  .contact-list{
+    list-style:none;
+    margin:24px 0 0; padding:0;
+    border-top:1px solid var(--panel-line);
+  }
+  .contact-list li{
+    padding:16px 0;
+    border-bottom:1px solid var(--panel-line);
+    display:flex;
+    gap:16px;
+    align-items:baseline;
+    flex-wrap:wrap;
+  }
+  .contact-list .k{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem;
+    letter-spacing:0.1em;
+    color:var(--accent);
+    width:70px;
+    flex-shrink:0;
+  }
+  .contact-list a{
+    text-decoration:none;
+    font-size:1rem;
+    font-weight:500;
+  }
+  .contact-list a:hover{ text-decoration:underline; }
+  .contact-lede{
+    color:var(--panel-ink-soft);
+    line-height:1.6;
+    max-width:44ch;
+  }
+  .contact-cta{
+    margin-top:28px;
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+
+  .contact-quote{
+    border-left:2px solid var(--accent);
+    padding-left:24px;
+    align-self:center;
+  }
+  .contact-quote p{
+    font-family:'Fraunces', serif;
+    font-size:1.5rem;
+    font-weight:500;
+    font-style:italic;
+    line-height:1.35;
+    margin:0 0 12px;
+    text-wrap:balance;
+  }
+  .contact-quote span{
+    font-size:0.72rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--panel-ink-soft);
+  }
+
+  @media (max-width: 760px){
+    .contact-grid{ grid-template-columns:1fr; gap:28px; }
+  }
+
+  footer{
+    background:var(--panel);
+    color:var(--panel-ink-soft);
+    border-top:1px solid var(--panel-line);
+    padding-block:20px;
+    font-size:0.78rem;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  footer .wrap{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+    padding-bottom:env(safe-area-inset-bottom, 0px);
+  }
+</style>
+
+<header class="topbar">
+  <div class="wrap">
+    <span class="brand">Jagdish M Prajapati</span>
+    <a class="call" href="tel:+919898074010">Call 98980 74010</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero" style="border-top:none;">
+    <div class="wrap">
+      <div class="eyebrow">Est. 2006 · Electrical Contractors</div>
+      <h1>Jagdish M Prajapati</h1>
+      <p class="tagline">Concealed conduit, wiring, distribution boards and fittings for bungalows, flats, offices and cafés — the same crew, drawing to switch plate, on every site.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://wa.me/919898074010" target="_blank" rel="noopener">WhatsApp us</a>
+        <a class="btn btn-ghost" href="tel:+919898074010">Call now</a>
+      </div>
+      <div class="hero-photo">
+        <img src="images/interior.png" alt="Finished electrical fit-out — pendant lighting and concealed switches in a completed interior" />
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>About us</h2>
+        <span class="section-num mono">01 — About</span>
+      </div>
+      <div class="about-grid">
+        <div>
+          <p>Electrical contractors for flats, bungalows, offices and cafés — two decades of sites across the city, and the same hands on every one of them.</p>
+          <p>The customers we started with twenty years ago are still with us. Once someone gives us a site, they do not go to anyone else again — that is the trust we have earned, one job at a time.</p>
+          <p>We work to your drawing, from the first conduit laid in the roof to the last switch plate fitted. The same crew carries the job the whole way — nothing is handed to a stranger halfway.</p>
+        </div>
+        <div class="about-card">
+          <div class="stat">
+            <div class="num mono">120+</div>
+            <div class="label">Projects done</div>
+          </div>
+          <div class="stat">
+            <div class="num mono">20</div>
+            <div class="label">Years on site</div>
+          </div>
+          <p class="about-card-note">Flats · Bungalows · Offices · Cafés</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Our services</h2>
+        <span class="section-num mono">02 — Services</span>
+      </div>
+      <ul class="services-list">
+        <li>Complete electrical works for the entire site</li>
+        <li>Camera wiring</li>
+        <li>Light and chandelier fitting</li>
+        <li>Maintenance services</li>
+      </ul>
+      <p class="services-note">Concealed conduit, wiring, distribution boards and fittings for bungalows, flats, offices and cafés.</p>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Six stages, in order</h2>
+        <span class="section-num mono">03 — How we work</span>
+      </div>
+
+      <div class="stage">
+        <div class="stage-num mono">01</div>
+        <div class="stage-body">
+          <h3>Conduit in roof and floor</h3>
+          <p>Pipes laid in the roof slab and floor to the drawing you provide, so the wiring can be pulled through afterwards.</p>
+          <div class="stage-photo">
+            <img src="images/roof-conduit.png" alt="Conduit pipes laid inside the roof slab reinforcement before concreting" />
+          </div>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="stage-num mono">02</div>
+        <div class="stage-body">
+          <h3>Switchboard boxes</h3>
+          <p>Metal boxes cut into the wall at every switchboard position, set to level and to height before plaster closes it.</p>
+          <div class="stage-photo">
+            <img src="images/finished-db.png" alt="Switchboard enclosures mounted on the wall with conduit runs before final wiring" />
+          </div>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="stage-num mono">03</div>
+        <div class="stage-body">
+          <h3>Wiring pulled through</h3>
+          <p>Separate circuits for light, fan, AC, camera and power points — loads split so no single line carries more than it should.</p>
+          <svg class="stage-icon" width="44" height="44" viewBox="0 0 44 44" fill="none">
+            <path d="M4 10 Q 16 10 16 22 T 28 34 H 40" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M4 22 Q 16 22 16 22 T 28 22 H 40" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.5"/>
+            <path d="M4 34 Q 16 34 16 22 T 28 10 H 40" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="stage-num mono">04</div>
+        <div class="stage-body">
+          <h3>Distribution board</h3>
+          <p>Every circuit terminated in the DB on its own MCB, and each MCB tagged and labelled — so a future fault is found in seconds.</p>
+          <div class="stage-photo">
+            <img src="images/open-db.png" alt="Open distribution board with labelled MCBs for lighting, AC, and reception circuits" />
+          </div>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="stage-num mono">05</div>
+        <div class="stage-body">
+          <h3>Lights, fans and switches</h3>
+          <p>Fitting starts after paint, so nothing finished gets damaged. Every point is run and tested in front of you.</p>
+          <svg class="stage-icon" width="40" height="44" viewBox="0 0 40 44" fill="none">
+            <circle cx="20" cy="16" r="10" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M15 24 L 17 32 H 23 L 25 24" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            <line x1="16" y1="36" x2="24" y2="36" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <line x1="17" y1="40" x2="23" y2="40" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="stage-num mono">06</div>
+        <div class="stage-body">
+          <h3>Switches, your way</h3>
+          <p>Plates, finish and switch layout customised to your preference, grouped the way the room is actually used.</p>
+          <svg class="stage-icon" width="40" height="44" viewBox="0 0 40 44" fill="none">
+            <rect x="6" y="6" width="28" height="32" rx="2" stroke="currentColor" stroke-width="1.6"/>
+            <rect x="12" y="13" width="6" height="10" rx="1" stroke="currentColor" stroke-width="1.4"/>
+            <rect x="22" y="13" width="6" height="10" rx="1" stroke="currentColor" stroke-width="1.4"/>
+            <line x1="12" y1="30" x2="28" y2="30" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Contact us</h2>
+        <span class="section-num mono">04 — Contact</span>
+      </div>
+      <div class="contact-grid">
+        <div>
+          <p class="contact-lede">Send us the layout drawing or call for a site visit — we come back with a point count and a rate.</p>
+          <ul class="contact-list">
+            <li>
+              <span class="k mono">TEL</span>
+              <a href="tel:+919898074010">98980 74010</a>
+            </li>
+            <li>
+              <span class="k mono">W/A</span>
+              <a href="https://wa.me/919898074010" target="_blank" rel="noopener">98980 74010</a>
+            </li>
+            <li>
+              <span class="k mono">MAIL</span>
+              <a href="mailto:Jagdishprajapati7902@gmail.com">Jagdishprajapati7902@gmail.com</a>
+            </li>
+            <li>
+              <span class="k mono">ADDR</span>
+              <span>L268/3207 Gota Housing, Ahmedabad</span>
+            </li>
+          </ul>
+          <div class="contact-cta">
+            <a class="btn btn-primary" href="https://wa.me/919898074010" target="_blank" rel="noopener">WhatsApp us</a>
+            <a class="btn btn-ghost" style="border-color:var(--panel-line);" href="tel:+919898074010">Call now</a>
+          </div>
+        </div>
+        <div class="contact-quote">
+          <p>&ldquo;Once someone gives us a site, they do not go to anyone else again.&rdquo;</p>
+          <span class="mono">— 20 years, same crew</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Jagdish M Prajapati — Electrical Contractors</span>
+    <span>Est. 2006 · Ahmedabad</span>
+  </div>
+</footer>
